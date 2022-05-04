@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>INCTSHOP - clothes for everyone</title>{% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/edit.css' %}">
+</head>
+<body style="background-color: #DADADA;">
+    <nav class="navbar navbar-expand-lg navbar-light shadow fixed-top under" style="background-color: #2D2D2D;">
+        <div class="container-fluid mx-5">
+            <img src="{% static 'images/menu.svg' %}" class="d-xl-none" onclick="openMenu()" style="width: 40px;">
+            <a class="d-xl-block d-lg-none d-none" style="font-size: 32px; font-family: 'Cinzel', serif; color: white; margin-right: -5rem; text-decoration: none;" href="../">INCTSHOP</a>
+            <!--<img class="d-xl-block d-lg-none d-none" src="{% static 'images/catalog.svg' %}" style="margin-right: -5rem;">-->
+            
+                <form method="get" action="{% url 'main' %}" style="width: 50%;">
+                    <input name="search" type="search" class="form-control" aria-label="Search" style="border-radius: 9px; border-color: white;"/>
+                </form>
+            
+            <div class="d-xl-block d-lg-none d-none">
+                <img src="{% static 'images/ring.svg' %}" style="padding-right: 4.5rem;">
+                <a href="/authorization" style="text-decoration: none;">
+                    <img src="{% static 'images/profile.svg' %}" style="padding-right: 4rem;">
+                </a>
+                <a href="/cart" style="text-decoration: none;">
+                    <img src="{% static 'images/cart.svg' %}">
+                </a>
+            </div>
+            <a class="d-xl-none" href="/cart">
+                <img src="{% static 'images/cart.svg' %}">
+            </a>
+        </div>
+    </nav>
+    <div id="menu" style="z-index: 2;">
+        <div>
+            <li><a href="/" style="text-decoration: none; color: #FFF; font-weight: 700;">Main</a></li>
+            <li><a href="" style="text-decoration: none; color: #FFF; font-weight: 700;">Catalog</a></li>
+            <li><a href="../authorization" style="text-decoration: none; color: #FFF; font-weight: 700;">Profile</a></li>
+        </div>
+    </div>
+    <div style="padding-top: 6rem; max-width: 1440px;">
+        <div style="padding-left: 5%;">
+            <div>
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        function openMenu() {
+        document.getElementById("menu").classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

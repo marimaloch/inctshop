@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>INCTSHOP - clothes for everyone</title>{% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/edit.css' %}">
+</head>
+<body style="background-color: #DADADA;">
+    <div style="width: 68px; padding: 10px; margin: 10px; background-color: white; border-radius: 8px; border-color: black; font-family: 'Montserrat', sans-serif; font-weight: 700; box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.35);">
+        <a href="../authorization" style="color: black; text-decoration: none;">BACK</a>
+    </div>
+    <div style="padding-left: calc(50% - 320px / 2); margin-top: 7%;">
+        <h2 style="font-weight: 700; padding-left: 100px;">Sing-Up</h2>
+        <form action="{% url 'singup' %}" method="POST" >
+            {% csrf_token %}
+            <div>
+                <input type="text" name="username" value="" style="font-family: 'Montserrat', sans-serif; font-size: 18px; border-radius: 15px; width: 320px; height: 50px; border-width: 2.5px; border-color: black; margin-bottom: 10px; " placeholder="Username">
+            </div>
+            <div>
+                <input type="email" name="email" value="" style="font-family: 'Montserrat', sans-serif; font-size: 18px; border-radius: 15px; width: 320px; height: 50px; border-width: 2.5px; border-color: black; margin-bottom: 10px;" placeholder="Email">
+            </div>
+            <div>
+                <input type="password" name="password" value="" style="font-family: 'Montserrat', sans-serif; font-size: 18px; border-radius: 15px; width: 320px; height: 50px; border-width: 2.5px; border-color: black; margin-bottom: 10px;" placeholder="Password">
+            </div>
+            <input type="submit" value="singup" style="font-family: 'Montserrat', sans-serif; font-size: 18px; border-radius: 15px; width: 170px; height: 50px; border-width: 2.5px; border-color: black; margin-left: 70px;">
+        </form>
+    </div>
+</body>
+</html>

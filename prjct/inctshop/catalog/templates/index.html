@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block filters %}
+    <div style="margin: 20px;">
+        <form action="" method="POST">
+        {% csrf_token %}
+            <!--<div style="margin-bottom: 15px;">
+                <p style="font-weight: 700; margin: 0; font-size: 18px;">
+                Price
+                </p>
+                <div style="display: flex;">
+                    <input type="number" name="minimal_price" style="width: 60px; height: 25px; border-color: #DADADA; border-radius: 5px; margin-right: 5px; border-style: solid;" placeholder="min">
+                    <span style="margin-top: 10px; height: 2.5px; width: 20px; background-color: #2D2D2D; border-radius: 1.5px;"></span>
+                    <input type="number" name="maximal_price" style="width: 60px; height: 25px; border-color: #DADADA; border-radius: 5px; margin-left: 5px; border-style: solid;" placeholder="max">
+                </div>
+            </div> -->
+            <div style="margin-bottom: 15px;">
+                <p style="font-weight: 700; margin: 0; font-size: 18px;">
+                Material
+                </p>
+                <div style="display: inline-block;">
+                {% if materials.count > 0 %}
+                    {% for material in materials %}
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="{{ material.material_name }}" id="flexCheckDefault" name="mat">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            {{ material.material_name }}
+                          </label>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <p style="font-weight: 700; margin: 0; font-size: 18px;">
+                Brand
+                </p>
+                <div style="display: inline-block;">
+                {% if brands.count > 0 %}
+                    {% for brand in brands %}
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="{{ brand.brand_name }}" id="flexCheckDefault" name="brn">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            {{ brand.brand_name }}
+                          </label>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <p style="font-weight: 700; margin: 0; font-size: 18px;">
+                Color
+                </p>
+                <div style="display: inline-block;">
+                {% if colors.count > 0 %}
+                    {% for color in colors %}
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="{{ color.color_name }}" id="flexCheckDefault" name="col">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            {{ color.color_name }}
+                          </label>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <p style="font-weight: 700; margin: 0; font-size: 18px;">
+                Size
+                </p>
+                <div style="display: inline-block;">
+                {% if sizes.count > 0 %}
+                    {% for size in sizes %}
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="{{ size.size_name }}" id="flexCheckDefault" name="siz">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            {{ size.size_name }}
+                          </label>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            <input type="submit" name="filter" value="filter" style="font-family: 'Montserrat', sans-serif; font-size: 20px; color: #000; font-weight: 700; border-radius: 5px; width: 70px; height: 30px; border: none; background-color: #DADADA; margin-bottom: 15px;">
+        </form>
+    </div>
+{% endblock %}
+{% block content %}
+    <div>
+        <div class="row" style="margin-left: 15px; ">   
+        {% if products.count > 0 %}
+            {% for product in products %}
+                <div class="inzert" style="background-color: #FFF; width: 350px; height: 225px; border-radius: 11px; padding: 10px; display: flex; margin: 10px; margin-top: 0; position: relative;">
+                    <a href="{{ product.id }}">
+                        <img src="static/images/{{ product.product_photo }}" style="border: 4px solid #2D2D2D; border-radius: 13px; margin-right: 10px; width: 157px;">
+                    </a>
+                    <div style="display: block;">
+                    <div>
+                        <p style="font-size: 22px; font-weight: 700;">
+                            <a href="{{ product.id }}" style="text-decoration: none; color: #2D2D2D;">
+                                {{ product.product_name }}
+                            </a>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            {{ product.product_short_detail }}
+                        </p>
+                    </div>
+                    <div style="display: flex; position: absolute; bottom: 0;">
+                        <p style="background-color: #DADADA; padding: 3px; width: 80px; font-size: 28px; font-weight: 700; border-radius: 13px; padding-bottom: 0; margin-bottom: 16px; text-align: center;">
+                            {{ product.product_price }} $
+                        </p>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <button  src="static/images/cart_fill.svg" type="submit" value="{{ product.product_number }}" name="mybtn" style="border: none; background-color: transparent;">
+                                <p style="background-color: #DADADA; padding: 3px; padding-left: 9px; width: 50px; font-size: 28px; border-radius: 13px;">
+                                    <img src="static/images/cart_fill.svg">
+                                </p>
+                            </button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

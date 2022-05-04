@@ -1,0 +1,50 @@
+{% extends "base_non.html" %}
+{% block content %}
+    <div class="container" style="padding-left: 0;">
+        <div class="row">
+            {% for p in products %}
+                {% if p.count > 0 %}
+                {% for product in p %}
+                    <div class="inzert" style="background-color: #FFF; width: 375px; height: 225px;   border-radius: 11px; padding: 10px; display: flex; margin: 12.5px; position: relative; margin-left: 0;">
+                        <a href="../{{ product.id }}">
+                            <img src="../static/images/{{ product.product_photo }}" style="border: 4px solid #2D2D2D; border-radius: 13px; margin-right: 8px; max-width: 90%;">
+                        </a>
+                        <div style="display: block;">
+                        <div>
+                            <p style="font-size: 22px; font-weight: 700;">
+                                <a href="{{ product.id }}" style="text-decoration: none; color: #2D2D2D;">
+                                    {{ product.product_name }}
+                                </a>
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                {{ product.product_short_detail }}
+                            </p>
+                        </div>
+                        <div style="display: flex; position: absolute; bottom: 0;">
+                            <p style="background-color: #DADADA; padding: 3px; width: 70px; font-size: 28px; font-weight: 700; border-radius: 13px; text-align: center;  margin-right: 7px;">
+                                {{ product.product_price }} $
+                            </p>
+                            <form action="" method="POST" style="display: flex;">
+                                {% csrf_token %}
+                                <button type="submit" value="{{ product.product_number }}" name="buy" style="border: none; background-color: transparent; padding: 0;">
+                                    <p style="background-color: #DADADA; padding: 3px; padding-left: 5px; width: 50px; font-size: 28px; border-radius: 13px;">
+                                        <img src="../static/images/true.svg" style="width:  30px;">
+                                    </p>
+                                </button>
+                                <button type="submit" value="{{ product.product_number }}" name="cancel" style="border: none; background-color: transparent;">
+                                    <p style="background-color: #DADADA; padding: 3px; padding-left: 5px; width: 50px; font-size: 28px; border-radius: 13px; border-width: 0;">
+                                        <img src="../static/images/false.svg" style="width: 30px;">
+                                    </p>
+                                </button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base_non.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+    <form action="" method="POST" >
+            {% csrf_token %}
+    <div style="display: flex; flex-flow: row wrap;">
+        <div class="inzert" style="background-color: #FFF; width: 350px; height: 225px; border-radius: 11px; padding: 10px; display: flex; margin-top: 12.5px; margin-right: 12.5px; min-width: 350px;">
+            <a href="../{{ product.id }}">
+                <img src="../static/images/{{ product.product_photo }}" style="border: 4px solid #2D2D2D; border-radius: 13px; margin-right: 10px;  width: 95%;">
+            </a>
+            <div style="display: block;">
+                <div>
+                    <p style="font-size: 22px; font-weight: 700;">
+                        <a href="{{ product.id }}" style="text-decoration: none; color: #2D2D2D;">
+                                    {{ product.product_name }}
+                        </a>
+                    </p>
+                </div>
+                <div style="margin-bottom: 53px;">
+                    <p>
+                                {{ product.product_short_detail }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div style="max-width: 300px;">
+            <div style=" display: flex; background-color: #FFF; width: 350px; height: 65px; border-radius: 11px; margin-top: 12.5px;">
+                <p style="font-weight: 700; font-size: 24px; padding-left: 10%;  padding-top: 15px;">
+                    Count
+                </p>
+                <div style="padding: 10px;">
+                    <input type="number" name="count" value="" style="font-family: 'Montserrat', sans-serif; font-weight: 700; padding-left: 20px; font-size: 24px; border-radius: 5px; width: 60px; height: 45px; margin-left: 10px; border-color: #9C9C9C; border-style: solid; background-color: #DADADA;">
+                </div>
+            </div>
+            <div style="display: flex; background-color: #FFF; width: 350px; height: 65px; border-radius: 11px; margin-top: 12.5px;">
+                <p style="font-weight: 700; font-size: 24px; padding-left: 10%;  padding-top: 15px;">
+                    Price for one
+                </p>
+                <div style="padding: 10px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; padding-left: 8px; font-size: 24px; border-radius: 5px; width: 60px; height: 45px; margin-left: 10px; border: none; background-color: #DADADA;">
+                        <p style="font-weight: 700; font-size: 24px; padding-top: 5px;">
+                            {{ product.product_price }}$
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; background-color: #FFF; width: 350px; height: 65px; border-radius: 11px; margin-top: 12.5px;">
+                <p style="font-weight: 700; font-size: 24px; padding-left: 10%;  padding-top: 15px;">
+                    Delivery
+                </p>
+                <div style="padding: 10px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; padding-left: 8px; font-size: 24px; border-radius: 5px; width: 60px; height: 45px; margin-left: 10px; border: none; background-color: #DADADA;">
+                        <p style="font-weight: 700; font-size: 24px; padding-top: 5px;">
+                            10$
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-color: #FFF; width: 95%; height: 4px; border-radius: 2px; margin-top: 20px; margin-bottom: 20px;">
+    </div>
+        <div style="display: flex; flex-flow: row wrap">
+            <div style="display: inline-block; margin-right: 10px;">
+                <div>
+                    <input type="text" name="name" value="" style="font-family: 'Montserrat', sans-serif; font-size: 18px; border-radius: 10px; width: 350px; height: 60px; border-width: 2.5px; border-style: solid; border-color: #9C9C9C; margin-bottom: 10px; " placeholder="Name">
+                </div>
+                <div>
+                    <input type="text" name="surename" value="" style="font-family: 'Montserrat', sans-serif; font-size: 18px; border-radius: 10px; width: 350px; height: 60px; border-width: 2.5px; border-style: solid; border-color: #9C9C9C; margin-bottom: 10px;" placeholder="Surename">
+                </div>
+                <div>
+                    <input type="email" name="email" value="" style="font-family: 'Montserrat', sans-serif; font-size: 18px; border-radius: 10px; width: 350px; height: 60px; border-width: 2.5px; border-style: solid; border-color: #9C9C9C;; margin-bottom: 10px;" placeholder="Contact Email">
+                </div>
+            </div>
+            <div style="display: inline-block;">
+                <div>
+                    <input type="text" name="city" value="" style="font-family: 'Montserrat', sans-serif; font-size: 18px; border-radius: 10px; width: 350px; height: 60px; border-width: 2.5px; border-style: solid; border-color: #9C9C9C;; margin-bottom: 10px;" placeholder="City">
+                </div>
+                <div>
+                    <input type="text" name="address" value="" style="font-family: 'Montserrat', sans-serif; font-size: 18px; border-radius: 10px; width: 350px; height: 60px; border-width: 2.5px; border-style: solid; border-color: #9C9C9C;; margin-bottom: 10px;" placeholder="Delivery Address">
+                </div>
+            </div>
+        </div>
+    <div style="background-color: #FFF; width: 95%; height: 4px; border-radius: 2px; margin-top: 20px; margin-bottom: 20px;">
+    </div>
+    <button type="submit" name="order" value="{{product.product_number}}" style="font-family: 'Montserrat', sans-serif; font-size: 28px; color: #FFF; font-weight: 700; border-radius: 15px; width: 300px; height: 60px; border: none; background-color: #000; box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5), 0px 0px 16px rgba(0, 0, 0, 0.2); margin-bottom: 50px;">Order</button>
+    </form>
+    </div>
+</div>
+{% endblock %}
